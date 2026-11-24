@@ -1,0 +1,31 @@
+# TP17 partie 1 : identité et permissions minimales de l'application.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: api-sa
+  namespace: tp17
+automountServiceAccountToken: false # l'API n'a pas besoin de parler au cluster
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: config-reader
+  namespace: tp17
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: api-sa-config-reader
+  namespace: tp17
+subjects:
+  - kind: ServiceAccount
+    name: api-sa
+    namespace: tp17
+roleRef:
+  kind: Role
+  name: config-reader
+  apiGroup: rbac.authorization.k8s.io
