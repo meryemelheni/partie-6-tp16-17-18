@@ -1,0 +1,47 @@
+# TP18 : application qui affiche toutes les 5 s le secret qu'elle reçoit, en variable ET en fichier.
+# Elle permet d'observer ce qui se passe lors d'une rotation.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tp18
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-sa
+  namespace: tp18
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-reader
+  namespace: tp18
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: secret-reader }
+  template:
+    metadata:
+      labels: { app: secret-reader }
+    spec:
+      serviceAccountName: app-sa
+      containers:
+        - name: reader
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - 'while true; do echo "env=$API_KEY fichier=$(cat /secrets/api-key)"; sleep 5; done'
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef: { name: api-credentials, key: api-key }
+          volumeMounts:
+            - { name: creds, mountPath: /secrets, readOnly: true }
+          resources:
+            requests: { cpu: 10m, memory: 16Mi }
+            limits: { memory: 32Mi }
+      volumes:
+        - name: creds
+          secret:
+            secretName: api-credentials # créé par External Secrets Operator (partie 3)

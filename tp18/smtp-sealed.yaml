@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: smtp
+  namespace: tp18
+spec:
+  encryptedData:
+    password: AgDS47rGrgIrS7DM6Og8Z23qQ2XNTlZ/7BfslXsPROLtSx3Hs5mdOmt7yXZvCpiVLFGsS5BW3durl07mJJpDWPZ4G2swtlU6DvnRKu1AjOzibcedR4rr3MMqliIwIoFN4p/9jZ/lef1ulthL9Cq6AkXqC5u3iM1YZh4qF7e2pU1bu+ZeNFjB+1bzKg+lrKMxJSt51fCXROgIczsrECwdKTcA8TzSiaDrk2dU1AxQfIVMzkW3U8rf4hIg4IIDHWDVGc+6ekbM+t+QYL59KPee9VOlm5gRmm1PeMaHb0qKMxkPC3DKMgzILpk5KlOEwPS1bpkIiWFHmR3bGwTJPxDmonKrL2CbEPWczN/2mkFjl56JM+xWxnbw5Rf8TKHgOYFAzHwfPQ+EzKhRvoLnSe0qrHhg+zFMuUpQBQNBloGXHqyChoO650a+TSGegbMkQjyUfeSiIhT95nq887S6RLTbsQFEZwJsf1XXKoO3kc4R4lkHl2fYDlNza77ge+R9mKT1OQb7fd9xY+L6XqZ4eZww69tXvLdzSzV8zHymsBwyxvA0l9mD8KRBYylMg/HoFecplXLd20g5Lge8b7du9jTpqI9Z+eE08WuE2/Iudn4qsVeZ7p/TdzUv+NzXm0+xl6moC6m+KXsqzU+8sHSGsLPh8HonFa/fX1RcnZYRN5fW50xoGP1k1uGg+VmwuL4uwzc3bRqhhdTJxSJY2g==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: smtp
+      namespace: tp18
